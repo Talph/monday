@@ -37,22 +37,21 @@ class ActivityController extends Controller
         $url = env('MONDAY_API_URL');
         $token = env('MONDAY_API_TOKEN');
         $query = 'query {
-  boards(ids: 237326906) {
-    name
-      activity_logs (from: "2021-07-23T00:00:00Z", to: "2022-02-26T00:00:00Z") {
-      id
-      event
-      data
-      entity
-      user_id
-    }
-  }
-}';
+              boards(ids: 237326906) {
+                name
+                  activity_logs (from: "2021-07-23T00:00:00Z", to: "2022-02-26T00:00:00Z") {
+                  id
+                  event
+                  data
+                  entity
+                  user_id
+                }
+              }
+            }';
         $headers = [
             'Content-Type: application/json',
             'Authorization: ' . $token
         ];
-
 
         try {
             $data = @file_get_contents($url, false, stream_context_create([
@@ -75,11 +74,11 @@ class ActivityController extends Controller
 
                 $itemArr = json_decode($items);
                 $d = (array) $itemArr;
-                
-                
+
+
                 dd($d);
 
-                
+
             }
 
             print_r($cd);
