@@ -29,7 +29,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 @else
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand" href="{{ url('/board') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 @endif
