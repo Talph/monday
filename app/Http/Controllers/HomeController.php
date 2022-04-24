@@ -23,14 +23,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+//    public function index()
+//    {
+//        $timings = Board::all();
+//        return view('home', ["timings" => $timings]);
+//    }
     public function index()
     {
-        $timings = Board::all();
-        return view('home', ["timings" => $timings]);
-    }
-    public function show()
-    {
-        $timings = Board::all();
+        $timings = Board::orderby('date_logged', 'desc')->get();
         return view('board', ["timings" => $timings]);
     }
 }

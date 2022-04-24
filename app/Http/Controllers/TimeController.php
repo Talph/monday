@@ -48,8 +48,8 @@ class TimeController extends Controller
             'Content-Type: application/json',
             'Authorization: ' . $token
         ];
-                    
-        
+
+
         try {
             $data = @file_get_contents($url, false, stream_context_create([
                 'http' => [
@@ -68,13 +68,13 @@ class TimeController extends Controller
         if(Time::exists()){
             Time::truncate();
         }
-                        
+
         # loop through the items that are in the board
         for($i =0; $i < count($response["data"]["boards"][0]["items"]); $i++){
             $taskName = $response["data"]["boards"][0]["items"][$i]["name"];
             $taskStatus = $response["data"]["boards"][0]["items"][$i]["state"];
             $dr = $response["data"]["boards"][0]["items"][$i]["column_values"];
-            
+
             #Create an object from $dr returned string
             $obj = json_decode($dr[0]["value"]);
 
@@ -84,7 +84,7 @@ class TimeController extends Controller
             }
 
                 $count = count($obj->additional_value);
-                
+
                 for ($a = 0; $a < $count; $a++) {
                     $arr = (array)($obj->additional_value[$a]);
 
@@ -115,8 +115,8 @@ class TimeController extends Controller
                     }
                 }
         }
-        
-        
+
+
         if($res){
             $res = "- Default data was used! Enter details below for a custom data pull!";
         }else{
@@ -132,8 +132,4 @@ class TimeController extends Controller
         }
     }
 
-    public function export()
-    {
-        return Excel::download(new TimeExport, 'epicerp_tasks_timings.xlsx');
-    }
 }

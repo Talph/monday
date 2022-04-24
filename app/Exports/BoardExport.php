@@ -5,7 +5,7 @@ namespace App\Exports;
 use App\Models\Board;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class TimeExport implements FromCollection
+class BoardExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection

@@ -20,9 +20,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/board', [App\Http\Controllers\HomeController::class, 'show'])->name('board');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/pull-data-from-monday', [App\Http\Controllers\BoardController::class, 'store'])->name('generate');
-Route::post('/pull-data', [App\Http\Controllers\ActivityController::class, 'store'])->name('activity');
-Route::get('/export-to-excel', [App\Http\Controllers\TimeController::class, 'export'])->name('export');
+Route::group(["middleware"=> "auth"], function(){
+    Route::get('/board', [App\Http\Controllers\HomeController::class, 'index'])->name('board');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/pull-data-from-monday', [App\Http\Controllers\BoardController::class, 'store'])->name('generate');
+    Route::post('/pull-data', [App\Http\Controllers\ActivityController::class, 'store'])->name('activity');
+    Route::get('/export-to-excel', [App\Http\Controllers\TimeController::class, 'export'])->name('export');
+});
+
 
