@@ -1,6 +1,6 @@
-## About Monday Times
+# About Monday Times
 
-## Features
+# Features
 Boards data from monday.com <br/>
 Export board data into excel
 
